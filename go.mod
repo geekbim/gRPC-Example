@@ -3,8 +3,10 @@ module grpc-course
 go 1.16
 
 require (
-	github.com/google/uuid v1.3.0 // indirect
-	github.com/jinzhu/copier v0.3.2 // indirect
-	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0 // indirect
-	google.golang.org/protobuf v1.27.1 // indirect
+	github.com/golang/protobuf v1.5.2
+	github.com/google/uuid v1.3.0
+	github.com/stretchr/testify v1.7.2
+	google.golang.org/genproto v0.0.0-20220608133413-ed9918b62aac
+	google.golang.org/grpc v1.47.0
+	google.golang.org/protobuf v1.28.0
 )
