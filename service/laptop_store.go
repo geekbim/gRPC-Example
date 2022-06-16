@@ -6,7 +6,7 @@ import "errors"
 var ErrAlreadyExists = errors.New("record already exists")
 
 // LaptopStore is an interface to store laptop
-type LaptopStore struct {
+type LaptopStore interface {
 	// Save saves the laptop to the store
 	Save(laptop *pb.Laptop) error
 	// Find finds a laptop by ID
