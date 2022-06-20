@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"grpc-course/pb"
 	"grpc-course/sample"
+	"grpc-course/serializer"
 	"grpc-course/service"
 	"io"
 	"net"
@@ -230,7 +231,7 @@ func TestClientRateLaptop(t *testing.T) {
 
 	for idx := 0; ; idx++ {
 		res, err := stream.Recv()
-		if err == io.EOF {
+		if err != nil {
 			require.Equal(t, n, idx)
 			return
 		}
@@ -256,8 +257,18 @@ func startTestLaptopServer(t *testing.T, laptopStore service.LaptopStore, imageS
 	return listener.Addr().String()
 }
 
-func newTestLaptopClient(t *testing.T, serverAddress string) pb.LaptopServiceClient {
+func newTestLaptopClient(t *testing.T, serverAddress string) *pb.LaptopServiceClient {
 	conn, err := grpc.Dial(serverAddress, grpc.WithInsecure())
 	require.NoError(t, err)
 	return pb.NewLaptopServiceClient(conn)
+}
+
+func requireSameLaptop(t *testing.T, laptop1, laptop2 *pb.Laptop) {
+	json1, err := serializer.ProtobufToJSON(laptop1)
+	require.NoError(t, err)
+
+	json2, err := serializer.ProtobufToJSON(laptop2)
+	require.NoError(t, err)
+
+	require.Equal(t, json1, json2)
 }

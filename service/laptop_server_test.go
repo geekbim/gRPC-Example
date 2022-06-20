@@ -2,12 +2,12 @@ package service_test
 
 import (
 	"context"
+	"grpc-course/pb"
 	"grpc-course/sample"
 	"grpc-course/service"
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"google.golang.org/genproto/googleapis/rpc/code"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -30,7 +30,7 @@ func TestServerCreateLaptop(t *testing.T) {
 		name   string
 		laptop *pb.Laptop
 		store  service.LaptopStore
-		code   code.Code
+		code   codes.Code
 	}{
 		{
 			name:   "success_with_id",
