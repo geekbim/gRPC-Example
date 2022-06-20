@@ -212,8 +212,8 @@ func TestClientRateLaptop(t *testing.T) {
 	stream, err := laptopClient.RateLaptop(context.Background())
 	require.NoError(t, err)
 
-	scores := []float{8, 7.5, 10}
-	averages := []float64{8, 7.5, 8.5}
+	scores := []float64{8, 7.5, 10}
+	averages := []float64{8, 7.75, 8.5}
 
 	n := len(scores)
 	for i := 0; i < n; i++ {
